@@ -1,6 +1,5 @@
 import 'package:finances_tracker_app_ss_flutter/data/transaction.dart';
 import 'package:hive/hive.dart';
-import 'package:intl/intl.dart';
 
 var box = Hive.box<Transaction>('transaction');
 
@@ -95,43 +94,15 @@ List<Transaction> getCurrentYearTransactions() {
   return transactions;
 }
 
-// int total_chart(List<Transaction> transactions) {
-//   List a = [0, 0];
-//
-//   for (var i = 0; i < transactions.length; i++) {
-//     a.add(transactions[i].IN == 'Income'
-//         ? int.parse(transactions[i].amount)
-//         : int.parse(transactions[i].amount) * -1);
-//   }
-//   totals = a.reduce((value, element) => value + element);
-//   return totals;
-// }
-//
-// List time(List<Add_data> history2, bool hour) {
-//   List<Add_data> a = [];
-//   List total = [];
-//   int counter = 0;
-//   for (var c = 0; c < history2.length; c++) {
-//     for (var i = c; i < history2.length; i++) {
-//       if (hour) {
-//         if (history2[i].datetime.hour == history2[c].datetime.hour) {
-//           a.add(history2[i]);
-//           counter = i;
-//         }
-//       } else {
-//         if (history2[i].datetime.day == history2[c].datetime.day) {
-//           a.add(history2[i]);
-//           counter = i;
-//         }
-//       }
-//     }
-//     total.add(total_chart(a));
-//     a.clear();
-//     c = counter;
-//   }
-//   print(total);
-//   return total;
-// }
+List<Transaction> sortTransactionsByAmount(List<Transaction> transactions) {
+  transactions.sort((a, b) => b.amount.compareTo(a.amount));
+  return transactions;
+}
+
+List<Transaction> sortTransactionsByDate(List<Transaction> transactions) {
+  transactions.sort((a, b) => a.date.compareTo(b.date));
+  return transactions;
+}
 
 
 

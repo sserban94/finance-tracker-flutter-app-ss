@@ -1,9 +1,4 @@
-import 'dart:math';
-
-import 'package:finances_tracker_app_ss_flutter/computation/balance_calculator.dart';
 import 'package:finances_tracker_app_ss_flutter/computation/chart_calculator.dart';
-import 'package:finances_tracker_app_ss_flutter/computation/statistics_calculator.dart';
-import 'package:finances_tracker_app_ss_flutter/data/transaction.dart';
 import 'package:finances_tracker_app_ss_flutter/storage/constant_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -38,22 +33,22 @@ class _ChartState extends State<Chart> {
     switch (widget.index) {
       // TODO - change these
       case 0:
-        incomeMap = computeDailyIncomeForLast7Days();
-        expenseMap = computeDailyExpenseForLast7Days();
+        incomeMap = computeCurrentDayIncome();
+        expenseMap = computeCurrentDayExpenses();
         break;
       case 1:
         incomeMap = computeDailyIncomeForLast7Days();
-        expenseMap = computeDailyExpenseForLast7Days();
+        expenseMap = computeDailyExpensesForLast7Days();
         print("");
         break;
       case 2:
         incomeMap = computeDailyIncomeForCurrentMonth();
-        expenseMap = computeDailyExpenseForCurrentMonth();
+        expenseMap = computeDailyExpensesForCurrentMonth();
         print("");
         break;
       case 3:
-        incomeMap = computeDailyIncomeForCurrentMonth();
-        expenseMap = computeDailyExpenseForCurrentMonth();
+        incomeMap = computeDailyIncomeForCurrentYear();
+        expenseMap = computeDailyExpensesForCurrentYear();
         break;
       default:
         break;

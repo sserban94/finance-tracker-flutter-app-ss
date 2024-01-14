@@ -1,5 +1,4 @@
 import 'package:finances_tracker_app_ss_flutter/computation/statistics_calculator.dart';
-import 'package:finances_tracker_app_ss_flutter/data/top_expenses.dart';
 import 'package:finances_tracker_app_ss_flutter/data/transaction.dart';
 import 'package:finances_tracker_app_ss_flutter/storage/constant_storage.dart';
 import 'package:finances_tracker_app_ss_flutter/widgets/my_chart.dart';
@@ -27,10 +26,10 @@ class _StatisticsState extends State<Statistics> {
   // I will use the value (which is the index) to call the function with that index
   // ex: Day has index 0 and computeTodayBalance() has index 0 as well
   List computationFunctions = [
-    getCurrentDayTransactions(),
-    getLast7DaysTransactions(),
-    getCurrentMonthTransactions(),
-    getCurrentYearTransactions()
+    sortTransactionsByAmount(getCurrentDayTransactions()),
+    sortTransactionsByAmount(getLast7DaysTransactions()),
+    sortTransactionsByAmount(getCurrentMonthTransactions()),
+    sortTransactionsByAmount(getCurrentYearTransactions())
   ];
   List<Transaction> transactions = [];
 
@@ -174,7 +173,7 @@ class _StatisticsState extends State<Statistics> {
                   'images/dropdown/transaction_names/${transactions[index].name.replaceAll(' ', '_').toLowerCase()}.png',
                   height: 40),
             ),
-            title: Text(transactions[index].name,
+            title: Text(transactions[index].details,
                 style: const TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 17,
@@ -185,12 +184,12 @@ class _StatisticsState extends State<Statistics> {
                   fontWeight: FontWeight.w600,
                   // fontSize: 17,
                 )),
-            // trailing: Text('${transactions[index].amount % 1 == 0 ? transactions[index].amount.toInt() : transactions[index].amount}',
-            //     style: TextStyle(
-            //         fontWeight: FontWeight.w600,
-            //         fontSize: 19,
-            //         color:
-            //         transactions[index].type == 'Expense' ? Colors.red : Colors.green)),
+            trailing: Text('${transactions[index].amount % 1 == 0 ? transactions[index].amount.toInt() : transactions[index].amount}',
+                style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 19,
+                    color:
+                    transactions[index].type == 'Expense' ? Colors.red : Colors.green)),
           );
         }, childCount: transactions.length))
       ],
