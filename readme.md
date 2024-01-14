@@ -1,6 +1,6 @@
 # Finances Tracker Flutter Mobile CrossPlatform App
 
-## Functionalities:
+## Features:
 
 ### The user is able to:
 #### - add new transaction - either income or expense
