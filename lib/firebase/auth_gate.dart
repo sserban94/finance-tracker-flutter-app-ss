@@ -1,6 +1,7 @@
 import 'package:finances_tracker_app_ss_flutter/widgets/bottom_nav.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide EmailAuthProvider;
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
+import 'package:firebase_ui_oauth_google/firebase_ui_oauth_google.dart';
 import 'package:flutter/material.dart';
 
 class AuthGate extends StatelessWidget {
@@ -19,9 +20,9 @@ class AuthGate extends StatelessWidget {
           return SignInScreen(
             providers: [
               EmailAuthProvider(),
-              // GoogleProvider(
-              //     clientId:
-              //     '765519344528-531fr69hu7nkc5beeit43dbppopnkom4.apps.googleusercontent.com'),
+              GoogleProvider(
+                  clientId:
+                  '205748873722-0qdfkj639cmcqsng651dj4e1aoafhg3s.apps.googleusercontent.com'),
             ],
             // this will only be shown on mobile / tall screens
             // Specifically, if a screen is more than 800 pixels wide, the side builder content is shown,
@@ -38,8 +39,8 @@ class AuthGate extends StatelessWidget {
               return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: action == AuthAction.signIn
-                      ? const Text('Welcome to FlutterFire, please sign in!')
-                      : const Text('Welcome fo FlutterFire, please sign up!'));
+                      ? const Text('Welcome to FinanceTracker, please sign in!')
+                      : const Text('Welcome fo FinanceTracker, please sign up!'));
             },
             footerBuilder: (context, action) {
               return Padding(

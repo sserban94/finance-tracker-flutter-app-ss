@@ -2,6 +2,8 @@ import 'package:finances_tracker_app_ss_flutter/Screens/statistics_screen.dart';
 import 'package:finances_tracker_app_ss_flutter/Screens/home_screen.dart';
 import 'package:finances_tracker_app_ss_flutter/screens/new_transaction_screen.dart';
 import 'package:finances_tracker_app_ss_flutter/storage/constant_storage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 
 class BottomNav extends StatefulWidget {
@@ -14,7 +16,35 @@ class BottomNav extends StatefulWidget {
 // by using this leading underscore => private class (only available inside this file)
 class _BottomNavState extends State<BottomNav> {
   int selectedIndex = 0;
-  List screens = [Home(), Statistics(), Home(), Statistics()];
+  List screens = [
+    Home(),
+    Statistics(),
+    Home(),
+    // TODO - Why does this work without pop() ???
+    ProfileScreen(
+      actions: [
+        SignedOutAction((context) {
+          // Check if user has logged out
+          print("Bye Bye");
+          var user = FirebaseAuth.instance.currentUser;
+          if (user != null) {
+            print('User is signed in with UID: ${user.uid}');
+          } else {
+            print('No user is currently signed in.');
+          }
+        })
+      ],
+      children: [
+        const Divider(),
+        Padding(
+          padding: const EdgeInsets.all(2),
+          child: AspectRatio(
+            aspectRatio: 1,
+            child: Image.asset('images/product-logos/flutterfire_300x.png'),
+          ),
+        ),
+      ],
+    )];
 
   @override
   Widget build(BuildContext context) {
@@ -83,6 +113,7 @@ class _BottomNavState extends State<BottomNav> {
                     selectedIndex = 3;
                   });
                 },
+
                 child: Icon(
                     Icons.person_outlined,
                     size: 30,

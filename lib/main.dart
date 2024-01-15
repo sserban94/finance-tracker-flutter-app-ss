@@ -3,7 +3,6 @@
 import 'package:finances_tracker_app_ss_flutter/data/transaction.dart';
 import 'package:finances_tracker_app_ss_flutter/firebase/auth_gate.dart';
 import 'package:finances_tracker_app_ss_flutter/firebase_options.dart';
-import 'package:finances_tracker_app_ss_flutter/widgets/bottom_nav.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 // import 'package:hive/hive.dart';
@@ -40,7 +39,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       // this controls the debugger - it shows the debug banner if true
       debugShowCheckedModeBanner: false,
-      home: const AuthGate(),
+      home: AuthGate(),
       // TODO - Rename classes - include Screen as last word
       // home: Home(),
       // home: Statistics(),
