@@ -49,6 +49,9 @@ dependencies:
   #  and bidirectional text.
   intl: ^0.18.1
   fl_chart: ^0.66.0
+  firebase_core: ^2.24.2
+  firebase_auth: ^4.16.0
+  firebase_ui_auth: ^1.12.1
 
 dev_dependencies:
   flutter_test:
@@ -74,6 +77,7 @@ flutter:
 
 #   To add assets to your application, add an assets section, like this:
   assets:
+#    TODO - change these - only use folder
      - images/cc_48.png
      - images/tazz.png
      - images/salary.png
@@ -85,6 +89,8 @@ flutter:
      - images/dropdown/transaction_names/transportation.png
      - images/dropdown/transaction_types/expense.png
      - images/dropdown/transaction_types/income.png
+     - images/product-logos/dash.png
+     - images/product-logos/flutterfire_300x.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

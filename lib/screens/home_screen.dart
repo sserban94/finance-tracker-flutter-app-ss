@@ -52,14 +52,15 @@ class _HomeState extends State<Home> {
                     color: homeTransactionHistoryTextColor,
                   ),
                 ),
-                Text(
-                  "See all",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 15,
-                    color: homeSeeAllTextColor,
-                  ),
-                )
+                // TODO - add see all functionality -> full screen
+                // Text(
+                //   "See all",
+                //   style: TextStyle(
+                //     fontWeight: FontWeight.w600,
+                //     fontSize: 15,
+                //     color: homeSeeAllTextColor,
+                //   ),
+                // )
               ],
             ),
           )),
