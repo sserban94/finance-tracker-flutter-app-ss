@@ -25,15 +25,18 @@ class _StatisticsState extends State<Statistics> {
   // I will notify using the value notifier when the index is changed
   // I will use the value (which is the index) to call the function with that index
   // ex: Day has index 0 and computeTodayBalance() has index 0 as well
+  // TODO - optimize this - too many function calls and passing the params around
   List computationFunctions = [
-    sortTransactionsByAmount(getCurrentDayTransactions()),
-    sortTransactionsByAmount(getLast7DaysTransactions()),
-    sortTransactionsByAmount(getCurrentMonthTransactions()),
-    sortTransactionsByAmount(getCurrentYearTransactions())
+    filterTransactionsGetExpenses(
+        sortTransactionsByAmount(getCurrentDayTransactions())),
+    filterTransactionsGetExpenses(
+        sortTransactionsByAmount(getLast7DaysTransactions())),
+    filterTransactionsGetExpenses(
+        sortTransactionsByAmount(getCurrentMonthTransactions())),
+    filterTransactionsGetExpenses(
+        sortTransactionsByAmount(getCurrentYearTransactions()))
   ];
   List<Transaction> transactions = [];
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -127,7 +130,8 @@ class _StatisticsState extends State<Statistics> {
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
-                                color: statisticsTransactionTypeButtonTextColor)),
+                                color:
+                                    statisticsTransactionTypeButtonTextColor)),
                         Icon(
                           Icons.arrow_downward,
                           color: statisticsTransactionTypeButtonArrowColor,
@@ -158,7 +162,8 @@ class _StatisticsState extends State<Statistics> {
                         fontSize: 16,
                         fontWeight: FontWeight.w500),
                   ),
-                  Icon(Icons.swap_vert, size: 25, color: statisticsSwapArrowsColor)
+                  Icon(Icons.swap_vert,
+                      size: 25, color: statisticsSwapArrowsColor)
                 ],
               ),
             )
@@ -184,12 +189,14 @@ class _StatisticsState extends State<Statistics> {
                   fontWeight: FontWeight.w600,
                   // fontSize: 17,
                 )),
-            trailing: Text('${transactions[index].amount % 1 == 0 ? transactions[index].amount.toInt() : transactions[index].amount}',
+            trailing: Text(
+                '${transactions[index].amount % 1 == 0 ? transactions[index].amount.toInt() : transactions[index].amount}',
                 style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 19,
-                    color:
-                    transactions[index].type == 'Expense' ? Colors.red : Colors.green)),
+                    color: transactions[index].type == 'Expense'
+                        ? Colors.red
+                        : Colors.green)),
           );
         }, childCount: transactions.length))
       ],

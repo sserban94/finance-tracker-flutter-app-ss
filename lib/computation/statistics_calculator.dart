@@ -94,6 +94,11 @@ List<Transaction> getCurrentYearTransactions() {
   return transactions;
 }
 
+List<Transaction> filterTransactionsGetExpenses(List<Transaction> transactions) {
+  // TODO - need to change this
+  return transactions.where((x) => x.type == 'Expense').toList();
+}
+
 List<Transaction> sortTransactionsByAmount(List<Transaction> transactions) {
   transactions.sort((a, b) => b.amount.compareTo(a.amount));
   return transactions;
@@ -103,6 +108,8 @@ List<Transaction> sortTransactionsByDate(List<Transaction> transactions) {
   transactions.sort((a, b) => a.date.compareTo(b.date));
   return transactions;
 }
+
+
 
 
 

@@ -1,5 +1,6 @@
 import 'package:finances_tracker_app_ss_flutter/Screens/statistics_screen.dart';
 import 'package:finances_tracker_app_ss_flutter/Screens/home_screen.dart';
+import 'package:finances_tracker_app_ss_flutter/screens/chatbot_screen.dart';
 import 'package:finances_tracker_app_ss_flutter/screens/new_transaction_screen.dart';
 import 'package:finances_tracker_app_ss_flutter/storage/constant_storage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -19,7 +20,8 @@ class _BottomNavState extends State<BottomNav> {
   List screens = [
     Home(),
     Statistics(),
-    Home(),
+    // Home(),
+    ChatbotScreen(),
     // TODO - Why does this work without pop() ???
     ProfileScreen(
       actions: [
@@ -50,20 +52,24 @@ class _BottomNavState extends State<BottomNav> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: screens[selectedIndex],
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // navigator = widget - manages stack of children (actual stack)
-          Navigator.of(context)
-          // constructing a material page route using a builder
-              .push(MaterialPageRoute(builder: (context) => NewTransaction()));
-        },
-        child: Icon(Icons.add),
-        backgroundColor: navbarAddButtonBackgroundColor,
-        foregroundColor: navbarAddButtonForegroundColor,
-        // shape: ,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(top: 45),
+        child: FloatingActionButton(
+          onPressed: () {
+            // navigator = widget - manages stack of children (actual stack)
+            Navigator.of(context)
+            // constructing a material page route using a builder
+                .push(MaterialPageRoute(builder: (context) => NewTransaction()));
+          },
+          child: Icon(Icons.add),
+          backgroundColor: navbarAddButtonBackgroundColor,
+          foregroundColor: navbarAddButtonForegroundColor,
+          // shape: ,
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
+        // notchMargin: 10.0,
         shape: CircularNotchedRectangle(),
         child: Padding(
           padding: const EdgeInsets.only(top: 7.5, bottom: 7.5),
@@ -102,7 +108,7 @@ class _BottomNavState extends State<BottomNav> {
                   });
                 },
                 child: Icon(
-                    Icons.account_balance_wallet_outlined,
+                    Icons.android,
                     size: 30,
                     color: selectedIndex == 2 ? navbarFocusedButtonColor : navbarDefaultButtonColor
                 ),

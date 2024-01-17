@@ -1,5 +1,6 @@
 import 'package:finances_tracker_app_ss_flutter/computation/balance_calculator.dart';
-import 'package:finances_tracker_app_ss_flutter/data/money_list.dart';
+import 'package:finances_tracker_app_ss_flutter/computation/statistics_calculator.dart';
+
 import 'package:finances_tracker_app_ss_flutter/data/transaction.dart';
 import 'package:finances_tracker_app_ss_flutter/storage/constant_storage.dart';
 import 'package:flutter/material.dart';
@@ -20,8 +21,11 @@ class _HomeState extends State<Home> {
   // var transaction;
   final box = Hive.box<Transaction>('transaction');
 
+
   @override
   Widget build(BuildContext context) {
+    // TODO - find a more efficient way of doing the same here
+    var transactions = sortTransactionsByDate(box.values.toList()).reversed.toList();
     // visual scaffold for material design widgets
     return Scaffold(
         // SafeArea adds some padding to avoid intrusions by the OS
@@ -69,7 +73,8 @@ class _HomeState extends State<Home> {
               delegate: SliverChildBuilderDelegate(
             (context, index) {
               // TODO - change var name
-              var transaction = box.values.toList()[index];
+              // var transaction = box.values.toList()[index];
+              var transaction = transactions[index];
               return getDismissibleTransaction(transaction, index);
             },
             // Important - always specify child count
